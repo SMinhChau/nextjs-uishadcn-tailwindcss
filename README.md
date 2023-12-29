@@ -34,3 +34,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Using Zod for validation
+
+    [ZOD](https://zod.dev/?id=installation)
+
+## Multi language
+
+    - npm install i18next react-i18next
+    - npm i @formatjs/intl-localematcher
+    - npm i negotiator
+
+    - ex: https://github.com/vercel/next.js/blob/canary/examples/app-dir-i18n-routing/app/%5Blang%5D/layout.tsx
+    - https://www.codemotion.com/magazine/frontend/multilingual-site-in-next-js-with-next-i18next/#:~:text=Configure%20Your%20Next.&text=defined%20by%20Next.-,js.,using%20their%20UTS%20locale%20identifiers.
+    - https://locize.com/blog/next-app-dir-i18n/

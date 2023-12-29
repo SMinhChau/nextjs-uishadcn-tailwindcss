@@ -1,4 +1,4 @@
 import { ThemeProvider } from "./theme/theme-provider";
-export * from "./navbar";
-
 export default ThemeProvider;
+export * from "./navbar";
+export * from "@/components/common/footer";
