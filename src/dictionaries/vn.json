@@ -12,9 +12,15 @@
     "username": "Tên đăng nhập",
     "password": "Mật khẩu",
     "des_pass": "Đây là mật khẩu của bạn",
-    "des_user": "Đây là tên đăng nhập của bạn"
+    "des_user": "Đây là tên đăng nhập của bạn",
+    "error_login": "Đăng nhập không thành công! Thử lại!",
+    "success_login": "Đăng nhập thành công!"
   },
   "error": {
-    "username": "Tên đăng nhập phải lớn hơn 2 ký tự"
+    "username": "Tên đăng nhập phải lớn hơn 2 ký tự",
+    "notification": "Lỗi!"
+  },
+  "success": {
+    "notification": "Thành công!"
   }
 }

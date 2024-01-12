@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { i18n } from "../../../i18n-config";
 
 import { Navbar, ThemeProvider } from "@/components";
+import { Toaster } from "@/components/ui/toaster";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ const RootLayout = async ({
           <Navbar />
 
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

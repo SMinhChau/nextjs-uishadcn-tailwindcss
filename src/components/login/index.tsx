@@ -12,11 +12,12 @@ import {
 import { Input } from "@/components/ui/input";
 import signUp from "@/firebase/auth/signup";
 import signIn from "@/firebase/auth/singnin";
-import { LoginProps } from "@/utils";
+import { LoginProps, ErrorType } from "@/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { toast } from "../ui/use-toast";
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -34,17 +35,25 @@ const Login: React.FC<LoginProps> = ({ dictionary }) => {
     },
   });
 
-  console.log("dictionary >>>>", dictionary);
-
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    console.log("values >>", values);
-
     const { username, password } = values;
 
     const { result, error } = await signIn(username, password);
+    if (result) {
+      console.log(" result >>>", result);
+      toast({
+        title: dictionary.success.notification,
+        description: dictionary.login.success_login,
+      });
+    }
+    if (error) {
+      console.log(" error >>", error);
 
-    console.log(" result >>>", result);
-    console.log(" error >>>", error);
+      toast({
+        title: dictionary.error.notification,
+        description: dictionary.login.error_login,
+      });
+    }
   };
 
   return (

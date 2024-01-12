@@ -22,9 +22,37 @@ export interface LoginProps {
       password: string;
       des_pass: string;
       des_user: string;
+      error_login: string;
+      success_login: string;
     };
     error: {
       username: string;
+      notification: string;
+    };
+    success: {
+      notification: string;
     };
   };
 }
+
+export type ErrorType = {
+  code: number;
+  message: string;
+  errors: [
+    {
+      message: string;
+      domain: string;
+      reason: string;
+    }
+  ];
+};
+
+export type LoginResponse = {
+  kind: string;
+  localId: string;
+  email: string;
+  displayName: string;
+  idToken: string;
+  refreshToken: string;
+  expiresIn: string;
+};

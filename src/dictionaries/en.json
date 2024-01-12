@@ -13,9 +13,15 @@
     "username": "User Name",
     "password": "Password",
     "des_pass": "This is your Password",
-    "des_user": "This is your User Name"
+    "des_user": "This is your User Name",
+    "error_login": "Login error! Try now!",
+    "success_login": "Login success!"
   },
   "error": {
-    "username": "Username must be at least 2 characters."
+    "username": "Username must be at least 2 characters.",
+    "notification": "Fail!"
+  },
+  "success": {
+    "notification": "Success!"
   }
 }
