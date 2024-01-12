@@ -5,5 +5,16 @@
   "counter": {
     "increment": "Increment",
     "decrement": "Decrement"
+  },
+  "search": "Tìm kiếm",
+  "login": {
+    "login": "Đăng nhập",
+    "username": "Tên đăng nhập",
+    "password": "Mật khẩu",
+    "des_pass": "Đây là mật khẩu của bạn",
+    "des_user": "Đây là tên đăng nhập của bạn"
+  },
+  "error": {
+    "username": "Tên đăng nhập phải lớn hơn 2 ký tự"
   }
 }

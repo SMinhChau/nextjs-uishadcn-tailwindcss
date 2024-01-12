@@ -2,7 +2,6 @@
 import React from "react";
 import "./navbar.css";
 import { usePathname } from "next/navigation";
-
 import { i18n } from "../../../i18n-config";
 import Link from "next/link";
 
@@ -24,7 +23,9 @@ const Navbar: React.FC<Props> = ({ dictionary }) => {
   };
 
   return (
-    <nav className="container-full content-nav flex row-auto">
+    <nav className="container-full content-nav flex row-auto justify-between center">
+      <div>Logo </div>
+      <div>Search</div>
       <div>
         <ul>
           {i18n.locales.map((locale) => {

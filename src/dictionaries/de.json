@@ -5,5 +5,7 @@
   "counter": {
     "increment": "Zuwachs",
     "decrement": "Dekrementieren"
-  }
+  },
+  "search": "Search",
+  "login": "Login"
 }

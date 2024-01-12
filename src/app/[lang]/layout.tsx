@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Roboto_Serif as FontSans } from "next/font/google";
 import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
-import ThemeProvider from "@/components";
-import Navbar from "@/components/navbar";
+
 import { i18n } from "../../../i18n-config";
+
+import { Navbar, ThemeProvider } from "@/components";
 
 export const fontSans = FontSans({
   subsets: ["latin"],

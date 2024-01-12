@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 export type ThemeUi = "system" | "dark" | "light";
 
 export const NavBar = [
@@ -16,3 +14,17 @@ export const NavBar = [
     url: "/schedule",
   },
 ];
+export interface LoginProps {
+  dictionary: {
+    login: {
+      login: string;
+      username: string;
+      password: string;
+      des_pass: string;
+      des_user: string;
+    };
+    error: {
+      username: string;
+    };
+  };
+}

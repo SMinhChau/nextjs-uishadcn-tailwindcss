@@ -5,5 +5,17 @@
   "counter": {
     "increment": "Increment",
     "decrement": "Decrement"
+  },
+  "search": "Search",
+
+  "login": {
+    "login": "Login",
+    "username": "User Name",
+    "password": "Password",
+    "des_pass": "This is your Password",
+    "des_user": "This is your User Name"
+  },
+  "error": {
+    "username": "Username must be at least 2 characters."
   }
 }

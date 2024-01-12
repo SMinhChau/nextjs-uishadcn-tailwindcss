@@ -5,5 +5,7 @@
   "counter": {
     "increment": "Přidat",
     "decrement": "Ubrat"
-  }
+  },
+  "search": "Search",
+  "login": "Login"
 }

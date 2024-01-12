@@ -48,3 +48,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     - ex: https://github.com/vercel/next.js/blob/canary/examples/app-dir-i18n-routing/app/%5Blang%5D/layout.tsx
     - https://www.codemotion.com/magazine/frontend/multilingual-site-in-next-js-with-next-i18next/#:~:text=Configure%20Your%20Next.&text=defined%20by%20Next.-,js.,using%20their%20UTS%20locale%20identifiers.
     - https://locize.com/blog/next-app-dir-i18n/
+
+- https://github.com/vercel/next.js/discussions/31188

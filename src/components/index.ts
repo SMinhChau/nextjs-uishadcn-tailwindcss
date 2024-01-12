@@ -1,4 +1,5 @@
-import { ThemeProvider } from "./theme/theme-provider";
-export default ThemeProvider;
-export * from "./navbar";
-export * from "@/components/common/footer";
+import ThemeProvider from "./theme";
+import Navbar from "./navbar";
+import Login from "./login";
+
+export { ThemeProvider, Navbar, Login };
