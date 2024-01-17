@@ -7,7 +7,6 @@ export default async function IndexPage({
   params: { lang: Locale };
 }) {
   const dictionary = await getDictionary(lang);
-  console.log("dictionary >>>", dictionary);
 
   return (
     <div>

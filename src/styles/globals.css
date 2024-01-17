@@ -97,9 +97,6 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-/* Navbar CSS */
-@import "@/components/navbar/navbar.css";
-
 .container-full {
   @apply p-0 m-0;
 }

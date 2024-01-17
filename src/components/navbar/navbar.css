@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .content-nav {
   @apply h-14 flex items-center;
 }

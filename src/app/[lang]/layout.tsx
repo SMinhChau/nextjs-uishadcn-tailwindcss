@@ -7,6 +7,7 @@ import { i18n } from "../../../i18n-config";
 
 import { Navbar, ThemeProvider } from "@/components";
 import { Toaster } from "@/components/ui/toaster";
+import AuthProvider from "@/context/auth";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -34,17 +35,19 @@ const RootLayout = async ({
       <body
         className={cn("bg-background font-sans antialiased", fontSans.variable)}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
+        <AuthProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
 
-          {children}
-          <Toaster />
-        </ThemeProvider>
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );

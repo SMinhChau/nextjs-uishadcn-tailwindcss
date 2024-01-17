@@ -1,6 +1,5 @@
 import React from "react";
 import { Locale } from "../../../../i18n-config";
-
 import { getDictionary } from "../../../../get-dictionary";
 import { Login } from "@/components";
 
