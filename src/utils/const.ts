@@ -14,7 +14,7 @@ export const NavBar = [
     url: "/schedule",
   },
 ];
-export interface LoginProps {
+export interface PropsContent {
   dictionary: {
     login: {
       login: string;
@@ -29,9 +29,12 @@ export interface LoginProps {
       username: string;
       notification: string;
     };
+    search: string;
     success: {
       notification: string;
     };
+    to_profile: string;
+    logout: string;
   };
 }
 

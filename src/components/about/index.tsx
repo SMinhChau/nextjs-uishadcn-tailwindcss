@@ -1,9 +1,19 @@
 "use client";
-import { AuthContext } from "@/context";
-import React, { useContext } from "react";
+import useFirebaseAuth from "@/hook/useFirebaseAuth";
+import { useRouter } from "next/navigation";
+
+import React, { useEffect } from "react";
 
 const AboutPage = () => {
-  const user = useContext(AuthContext);
+  const router = useRouter();
+
+  const { authState } = useFirebaseAuth();
+
+  useEffect(() => {
+    if (!authState?.email) {
+      router.push("login");
+    }
+  }, [authState]);
 
   return <div>AboutPage</div>;
 };

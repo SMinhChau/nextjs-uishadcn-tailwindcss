@@ -1,4 +1,4 @@
-export type User = {
+export interface User {
   displayName: string;
   email: string;
   registered: string;
@@ -6,4 +6,4 @@ export type User = {
     accessToken: string;
     refreshToken: string;
   };
-};
+}
