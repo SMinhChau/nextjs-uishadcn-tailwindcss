@@ -10,15 +10,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import signIn from "@/firebase/auth/singnin";
-import { LoginProps, ErrorType } from "@/utils";
+import { PropsContent } from "@/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { toast } from "../ui/use-toast";
-import { usePathname, useRouter } from "next/navigation";
-import { User } from "@/entity/user";
+import { useRouter } from "next/navigation";
+import useFirebaseAuth from "@/hook/useFirebaseAuth";
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -27,8 +26,10 @@ const FormSchema = z.object({
   password: z.string().min(2).max(50),
 });
 
-const Login: React.FC<LoginProps> = ({ dictionary }) => {
+const Login: React.FC<PropsContent> = ({ dictionary }) => {
   const router = useRouter();
+
+  const { authState, loading, signInWithEmailAndPassword } = useFirebaseAuth();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -38,10 +39,16 @@ const Login: React.FC<LoginProps> = ({ dictionary }) => {
     },
   });
 
+  useEffect(() => {
+    if (authState?.email) {
+      router.push("about");
+    }
+  }, [authState, loading]);
+
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     const { username, password } = values;
 
-    const { result } = await signIn(username, password);
+    const { result } = await signInWithEmailAndPassword(username, password);
     if (result) {
       toast({
         title: dictionary.success.notification,
@@ -50,8 +57,8 @@ const Login: React.FC<LoginProps> = ({ dictionary }) => {
 
       router.push("about");
     }
+
     // if (error) {
-    //   console.log(" error >>", error);
 
     //   toast({
     //     title: dictionary.error.notification,

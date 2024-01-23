@@ -16,6 +16,8 @@
     "error_login": "Đăng nhập không thành công! Thử lại!",
     "success_login": "Đăng nhập thành công!"
   },
+  "to_profile": "Thông tin cá nhân",
+  "logout": "Đăng xuất",
   "error": {
     "username": "Tên đăng nhập phải lớn hơn 2 ký tự",
     "notification": "Lỗi!"
