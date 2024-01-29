@@ -2,9 +2,8 @@ import {
   signInWithEmailAndPassword,
   getAuth,
   createUserWithEmailAndPassword,
-  User,
 } from "firebase/auth";
-import firebase_app from "../../../configFireBase";
+import firebase_app from "../../../configFirebase";
 
 const auth = getAuth(firebase_app);
 
@@ -12,14 +11,10 @@ export const signIn = async (email: string, password: string) => {
   let result = null,
     code = null,
     message = null;
-
   try {
     const res = await signInWithEmailAndPassword(auth, email, password);
     result = res.user;
-    console.log("result >>>", result);
-  } catch (error) {
-    console.log("error >>>", error);
-  }
+  } catch (error) {}
 
   return { result, code, message };
 };

@@ -1,36 +1,30 @@
 import { User, getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
-import firebase_app from "../../../configFireBase";
-import { useRouter } from "next/navigation";
 import { Logout, signIn, signUp } from "@/firebase/auth";
-
-// const formatAuthUser = (user: User) => ({
-//   uid: user.uid,
-//   email: user.email,
-// });
+import firebase_app from "../../../configFirebase";
 
 const auth = getAuth(firebase_app);
 
 export default function useFirebaseAuth() {
-  const router = useRouter();
   const [authState, setAuthState] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, () => authStateChanged);
+    const unsubscribe = auth.onAuthStateChanged(authStateChanged);
     return () => unsubscribe();
   }, []);
 
-  const authStateChanged = async (authState: User) => {
-    if (!authState) {
+  const authStateChanged = async () => {
+    const authCurrent = auth.currentUser;
+
+    if (!authCurrent) {
       setAuthState(null!);
       setLoading(false);
       return;
     }
 
     setLoading(true);
-    // const formattedUser = formatAuthUser(authState);
-    setAuthState((prev) => ({ ...prev, ...authState }));
+    setAuthState((prev) => ({ ...prev, ...authCurrent }));
     setLoading(false);
   };
 

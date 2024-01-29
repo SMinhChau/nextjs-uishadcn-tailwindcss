@@ -40,15 +40,15 @@ const Login: React.FC<PropsContent> = ({ dictionary }) => {
   });
 
   useEffect(() => {
-    if (authState?.email) {
+    if (authState?.email && !loading) {
       router.push("about");
     }
-  }, [authState, loading]);
+  }, [authState?.email, loading]);
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     const { username, password } = values;
-
     const { result } = await signInWithEmailAndPassword(username, password);
+
     if (result) {
       toast({
         title: dictionary.success.notification,
