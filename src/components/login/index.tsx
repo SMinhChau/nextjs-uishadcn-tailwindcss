@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { PropsContent } from "@/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { toast } from "../ui/use-toast";
@@ -47,24 +47,23 @@ const Login: React.FC<PropsContent> = ({ dictionary }) => {
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     const { username, password } = values;
-    const { result } = await signInWithEmailAndPassword(username, password);
-
+    const { result, errorMessage } = await signInWithEmailAndPassword(
+      username,
+      password
+    );
     if (result) {
       toast({
         title: dictionary.success.notification,
         description: dictionary.login.success_login,
       });
-
       router.push("about");
     }
-
-    // if (error) {
-
-    //   toast({
-    //     title: dictionary.error.notification,
-    //     description: error.error.message,
-    //   });
-    // }
+    if (errorMessage) {
+      toast({
+        title: dictionary.error.notification,
+        description: errorMessage,
+      });
+    }
   };
 
   return (

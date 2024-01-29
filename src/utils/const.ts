@@ -1,3 +1,5 @@
+import { Locale } from "../../i18n-config";
+
 export type ThemeUi = "system" | "dark" | "light";
 
 export const NavBar = [
@@ -15,6 +17,7 @@ export const NavBar = [
   },
 ];
 export interface PropsContent {
+  lang?: Locale;
   dictionary: {
     login: {
       login: string;

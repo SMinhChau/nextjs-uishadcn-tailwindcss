@@ -14,11 +14,11 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { PropsContent } from "@/utils";
-import { Logout } from "@/firebase/auth";
-import { useAuth } from "@/context";
 import useFirebaseAuth from "@/hook/useFirebaseAuth";
+import { Locale } from "../../../i18n-config";
 
 export interface Props {
+  lang: Locale;
   dictionary?: {
     search: string;
     decrement: string;
@@ -27,7 +27,7 @@ export interface Props {
   };
 }
 
-const Navbar: React.FC<PropsContent> = ({ dictionary }) => {
+const Navbar: React.FC<PropsContent> = ({ dictionary, lang }) => {
   const pathName = usePathname();
   const router = useRouter();
   const { LogoutAccount } = useFirebaseAuth();
@@ -84,7 +84,7 @@ const Navbar: React.FC<PropsContent> = ({ dictionary }) => {
             );
           })}
         </ul> */}
-        <SelectOption />
+        {lang && <SelectOption lang={lang} />}
 
         <DropdownMenu>
           <DropdownMenuTrigger className=" focus:border-none  ">

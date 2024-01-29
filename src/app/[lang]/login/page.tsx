@@ -1,7 +1,6 @@
 import React from "react";
-import { Locale } from "../../../../i18n-config";
 
-const Login = async ({ params: { lang } }: { params: { lang: Locale } }) => {
+const Login = () => {
   return <div>Login</div>;
 };
 
