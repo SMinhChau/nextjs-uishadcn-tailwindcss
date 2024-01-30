@@ -1,8 +1,22 @@
-import { Firestore, collection, getDocs } from "firebase/firestore/lite";
+import { child, get, getDatabase, ref } from "firebase/database";
+import firebase_app from "../../../configFirebase";
+import { Locale } from "../../../i18n-config";
 
-export const getFriends = async (db: Firestore) => {
-  const languageCol = collection(db, "language");
-  const languageSnapshot = await getDocs(languageCol);
-  const languageList = languageSnapshot.docs.map((doc) => doc.data());
-  return languageList;
+const dbRef = ref(getDatabase(firebase_app));
+
+export const getLanguages = async (local: Locale) => {
+  let result = null;
+  await get(child(dbRef, `languages/${local}`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        result = snapshot.val();
+      } else {
+        return "No data available";
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  console.log("result  ", result);
+  return result;
 };

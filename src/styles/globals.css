@@ -35,6 +35,7 @@
 
   --button--primary: 178, 90%, 78%, 1;
   --button--primary-foreground: 178, 90%, 20%, 1;
+  --nav--height: 3.5rem;
 }
 
 .dark {

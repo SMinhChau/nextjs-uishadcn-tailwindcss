@@ -18,6 +18,7 @@ import * as z from "zod";
 import { toast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
 import useFirebaseAuth from "@/hook/useFirebaseAuth";
+import "./login.css";
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -67,17 +68,17 @@ const Login: React.FC<PropsContent> = ({ dictionary }) => {
   };
 
   return (
-    <div className="container w-1/2 flex justify-center">
+    <div className="container login-content w-3/4 md:w-1/2  flex justify-center">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="container w-auto space-y-6"
+          className="container w-full m-0 "
         >
           <FormField
             control={form.control}
             name="username"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full">
                 <FormLabel>{dictionary.login.username}</FormLabel>
                 <FormControl>
                   <Input placeholder="shadcn" {...field} />
@@ -101,7 +102,7 @@ const Login: React.FC<PropsContent> = ({ dictionary }) => {
               </FormItem>
             )}
           />
-          <Button className="flex justify-center" type="submit">
+          <Button className="flex justify-center w-full my-2.5" type="submit">
             {dictionary.login.login}
           </Button>
         </form>

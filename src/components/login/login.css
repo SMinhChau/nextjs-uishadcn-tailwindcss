@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .login-content {
+    height: calc(100dvh - var(--nav--height));
+    @apply items-center;
+  }
+}
