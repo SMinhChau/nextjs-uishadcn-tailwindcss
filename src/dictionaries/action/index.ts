@@ -11,12 +11,11 @@ export const getLanguages = async (local: Locale) => {
       if (snapshot.exists()) {
         result = snapshot.val();
       } else {
-        return "No data available";
+        result = "No data available";
       }
     })
     .catch((error) => {
       console.error(error);
     });
-  console.log("result  ", result);
   return result;
 };

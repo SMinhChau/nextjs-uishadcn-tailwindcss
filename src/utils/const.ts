@@ -62,3 +62,28 @@ export type LoginResponse = {
   refreshToken: string;
   expiresIn: string;
 };
+
+export const LanguagesDefault = {
+  lang: "",
+  dictionary: {
+    login: {
+      login: "",
+      username: "",
+      password: "",
+      des_pass: "",
+      des_user: "",
+      error_login: "",
+      success_login: "",
+    },
+    error: {
+      username: "",
+      notification: "",
+    },
+    search: "",
+    success: {
+      notification: "",
+    },
+    to_profile: "",
+    logout: "",
+  },
+};
