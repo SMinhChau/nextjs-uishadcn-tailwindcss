@@ -64,7 +64,7 @@ export type LoginResponse = {
 };
 
 export const LanguagesDefault = {
-  lang: "",
+  lang: "en",
   dictionary: {
     login: {
       login: "",

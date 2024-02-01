@@ -1,8 +1,10 @@
 "use client";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect } from "react";
 import useFirebaseAuth from "@/hook/useFirebaseAuth";
 import { useRouter } from "next/navigation";
 import { getLanguages } from "@/dictionaries/action";
+import { useAppDispatch } from "@/redux/hook";
+import { setLanguage } from "@/redux/slice/languages/languagesReducer";
 
 type Props = {
   children: React.ReactNode;
@@ -15,27 +17,25 @@ const authContext = createContext({
 
 const AuthProvider: React.FC<Props> = ({ children }) => {
   const auth = useFirebaseAuth();
-
-  const [dictionary, setDictionary] = useState();
-
+  const dispatch = useAppDispatch();
   const router = useRouter();
+
+  useEffect(() => {
+    const languages = () => {
+      getLanguages("vn").then((result) => {
+        if (result) {
+          dispatch(setLanguage(result));
+        }
+      });
+    };
+    return () => languages();
+  }, []);
 
   useEffect(() => {
     if (!auth.authState?.email) {
       router.push("login");
     }
   }, [!auth.authState?.email]);
-
-  useEffect(() => {
-    const languages = () => {
-      getLanguages("vn").then((result) => {
-        if (result) {
-          setDictionary(result);
-        }
-      });
-    };
-    languages();
-  }, []);
 
   return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 };
