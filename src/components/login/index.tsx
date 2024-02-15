@@ -9,8 +9,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { PropsContent } from "@/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -20,6 +18,8 @@ import { useRouter } from "next/navigation";
 import useFirebaseAuth from "@/hook/useFirebaseAuth";
 import "./login.css";
 import { useAppSelector } from "@/redux/hook";
+import { RootState } from "@/redux/store";
+import { Input } from "../ui/input";
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -28,12 +28,12 @@ const FormSchema = z.object({
   password: z.string().min(2).max(50),
 });
 
-const Login: React.FC<PropsContent> = () => {
+const Login = () => {
   const router = useRouter();
 
   const { authState, loading, signInWithEmailAndPassword } = useFirebaseAuth();
 
-  const { dictionary } = useAppSelector((state) => state.languages.dictionary);
+  const { dictionary } = useAppSelector((state: RootState) => state.languages);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -57,14 +57,14 @@ const Login: React.FC<PropsContent> = () => {
     );
     if (result) {
       toast({
-        title: dictionary?.success.notification,
-        description: dictionary?.login.success_login,
+        title: dictionary?.success?.notification,
+        description: dictionary?.login?.success_login,
       });
       router.push("about");
     }
     if (errorMessage) {
       toast({
-        title: dictionary?.error.notification,
+        title: dictionary?.error?.notification,
         description: errorMessage,
       });
     }
@@ -82,11 +82,11 @@ const Login: React.FC<PropsContent> = () => {
             name="username"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>{dictionary?.login.username}</FormLabel>
+                <FormLabel>{dictionary?.login?.username}</FormLabel>
                 <FormControl>
                   <Input placeholder="shadcn" {...field} />
                 </FormControl>
-                <FormDescription>{dictionary?.login.des_user}</FormDescription>
+                <FormDescription>{dictionary?.login?.des_user}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -96,17 +96,17 @@ const Login: React.FC<PropsContent> = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{dictionary?.login.password}</FormLabel>
+                <FormLabel>{dictionary?.login?.password}</FormLabel>
                 <FormControl>
                   <Input placeholder="password" {...field} type="password" />
                 </FormControl>
-                <FormDescription>{dictionary?.login.des_pass}</FormDescription>
+                <FormDescription>{dictionary?.login?.des_pass}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
           <Button className="flex justify-center w-full my-2.5" type="submit">
-            {dictionary?.login.login}
+            {dictionary?.login?.login}
           </Button>
         </form>
       </Form>

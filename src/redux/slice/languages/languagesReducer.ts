@@ -1,21 +1,15 @@
-import { LanguagesDefault, PropsContent } from "@/utils";
-import { createSlice } from "@reduxjs/toolkit";
-
-interface LanguageState {
-  dictionary: PropsContent;
-}
+import { LanguageState, LanguagesDefault } from "@/utils";
+import {  PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   dictionary: LanguagesDefault,
-} as LanguageState;
+};
 
 const languageSlice = createSlice({
   name: "languages",
   initialState,
   reducers: {
-    setLanguage(state, action) {
-      console.log("action.payload ", action.payload);
-
+    setLanguage(state, action: PayloadAction<LanguageState>) {
       state.dictionary = action.payload;
     },
   },

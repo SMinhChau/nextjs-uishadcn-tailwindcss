@@ -7,7 +7,7 @@ import { Navbar, ThemeProvider } from "@/components";
 import { Toaster } from "@/components/ui/toaster";
 import AuthProvider from "@/context/auth";
 import { getDictionary } from "../../../get-dictionary";
-import StoreProvider from "@/redux/storeProvider";
+import StoreProvider from "./StoreProvider";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -32,11 +32,14 @@ const RootLayout = async ({
 }) => {
   const dictionary = await getDictionary(params.lang);
   return (
-    <html lang={params.lang} suppressHydrationWarning>
-      <body
-        className={cn("bg-background font-sans antialiased", fontSans.variable)}
-      >
-        <StoreProvider>
+    <StoreProvider>
+      <html lang={params.lang} suppressHydrationWarning>
+        <body
+          className={cn(
+            "bg-background font-sans antialiased",
+            fontSans.variable
+          )}
+        >
           <AuthProvider>
             <ThemeProvider
               attribute="class"
@@ -50,9 +53,9 @@ const RootLayout = async ({
               <Toaster />
             </ThemeProvider>
           </AuthProvider>
-        </StoreProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </StoreProvider>
   );
 };
 

@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import "./navbar.css";
 import { usePathname, useRouter } from "next/navigation";
 import { Input } from "../ui/input";
@@ -16,6 +16,8 @@ import {
 import { PropsContent } from "@/utils";
 import useFirebaseAuth from "@/hook/useFirebaseAuth";
 import { Locale } from "../../../i18n-config";
+import { useAppSelector } from "@/redux/hook";
+import { RootState } from "@/redux/store";
 
 export interface Props {
   lang: Locale;
@@ -27,10 +29,11 @@ export interface Props {
   };
 }
 
-const Navbar: React.FC<PropsContent> = ({ dictionary, lang }) => {
+const Navbar: React.FC<PropsContent> = ({ lang }) => {
   const pathName = usePathname();
   const router = useRouter();
   const { LogoutAccount } = useFirebaseAuth();
+  const { dictionary } = useAppSelector((state: RootState) => state.languages);
 
   const redirectedPathName = (locale: string) => {
     if (!pathName) return "/";

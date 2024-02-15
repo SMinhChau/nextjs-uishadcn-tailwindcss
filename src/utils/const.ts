@@ -16,29 +16,30 @@ export const NavBar = [
     url: "/schedule",
   },
 ];
-export interface PropsContent {
-  lang?: Locale;
-  dictionary: {
-    login: {
-      login: string;
-      username: string;
-      password: string;
-      des_pass: string;
-      des_user: string;
-      error_login: string;
-      success_login: string;
-    };
-    error: {
-      username: string;
-      notification: string;
-    };
-    search: string;
-    success: {
-      notification: string;
-    };
-    to_profile: string;
-    logout: string;
+
+export type LanguageState = {
+  login: {
+    login: string;
+    username: string;
+    password: string;
+    des_pass: string;
+    des_user: string;
+    error_login: string;
+    success_login: string;
   };
+  error: {
+    username: string;
+    notification: string;
+  };
+  search: string;
+  success: {
+    notification: string;
+  };
+  to_profile: string;
+  logout: string;
+};
+export interface PropsContent extends LanguageState {
+  lang?: Locale;
 }
 
 export type ErrorType = {
@@ -64,26 +65,23 @@ export type LoginResponse = {
 };
 
 export const LanguagesDefault = {
-  lang: "en",
-  dictionary: {
-    login: {
-      login: "",
-      username: "",
-      password: "",
-      des_pass: "",
-      des_user: "",
-      error_login: "",
-      success_login: "",
-    },
-    error: {
-      username: "",
-      notification: "",
-    },
-    search: "",
-    success: {
-      notification: "",
-    },
-    to_profile: "",
-    logout: "",
+  login: {
+    login: "",
+    username: "",
+    password: "",
+    des_pass: "",
+    des_user: "",
+    error_login: "",
+    success_login: "",
   },
+  error: {
+    username: "",
+    notification: "",
+  },
+  search: "",
+  success: {
+    notification: "",
+  },
+  to_profile: "",
+  logout: "",
 };

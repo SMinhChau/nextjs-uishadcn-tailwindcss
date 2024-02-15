@@ -9,7 +9,7 @@ interface Props {
 
 const page: React.FC<Props> = async ({ params: { lang } }) => {
   const dictionary = await getDictionary(lang);
-  return <Login dictionary={dictionary} />;
+  return <Login />;
 };
 
 export default page;

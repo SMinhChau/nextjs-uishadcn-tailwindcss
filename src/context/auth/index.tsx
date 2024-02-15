@@ -21,21 +21,21 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const languages = () => {
-      getLanguages("vn").then((result) => {
-        if (result) {
-          dispatch(setLanguage(result));
-        }
-      });
-    };
-    return () => languages();
-  }, []);
-
-  useEffect(() => {
     if (!auth.authState?.email) {
       router.push("login");
     }
   }, [!auth.authState?.email]);
+
+  // useEffect(() => {
+  //   const languages = () => {
+  //     getLanguages("vn").then((result) => {
+  //       if (result) {
+  //         dispatch(setLanguage(result));
+  //       }
+  //     });
+  //   };
+  //   languages();
+  // }, []);
 
   return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 };
