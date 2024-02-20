@@ -21,12 +21,6 @@ import { RootState } from "@/redux/store";
 
 export interface Props {
   lang: Locale;
-  dictionary?: {
-    search: string;
-    decrement: string;
-    to_profile: string;
-    logout: string;
-  };
 }
 
 const Navbar: React.FC<PropsContent> = ({ lang }) => {
@@ -67,6 +61,7 @@ const Navbar: React.FC<PropsContent> = ({ lang }) => {
   const optionMenu = useMemo(() => {
     return <div></div>;
   }, []);
+
   return (
     <nav className="container content-nav flex row-auto justify-between center">
       <div>Logo </div>

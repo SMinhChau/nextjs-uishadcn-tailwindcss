@@ -13,13 +13,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { toast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
 import useFirebaseAuth from "@/hook/useFirebaseAuth";
-import "./login.css";
 import { useAppSelector } from "@/redux/hook";
 import { RootState } from "@/redux/store";
-import { Input } from "../ui/input";
+import { toast } from "@/components/ui/use-toast";
+import { Input } from "@/components/ui/input";
+import AuthLayout from "../layout";
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -71,7 +71,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container login-content w-3/4 md:w-1/2  flex justify-center">
+    <AuthLayout>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -110,7 +110,7 @@ const Login = () => {
           </Button>
         </form>
       </Form>
-    </div>
+    </AuthLayout>
   );
 };
 

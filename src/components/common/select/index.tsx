@@ -25,7 +25,9 @@ const SelectOption: React.FC<Props> = ({ lang }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    languages("vn");
+    if (lang) {
+      languages(lang);
+    }
   }, []);
 
   const redirectedPathName = (locale: string) => {

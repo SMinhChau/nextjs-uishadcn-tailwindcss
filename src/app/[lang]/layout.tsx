@@ -47,7 +47,7 @@ const RootLayout = async ({
               enableSystem
               disableTransitionOnChange
             >
-              <Navbar dictionary={dictionary} lang={params.lang} />
+              <Navbar lang={params.lang} />
 
               {children}
               <Toaster />
