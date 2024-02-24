@@ -1,11 +1,9 @@
 "use client";
-import useFirebaseAuth from "@/hook/useFirebaseAuth";
-import { useRouter } from "next/navigation";
-
-import React from "react";
+import { getLanguages } from "@/dictionaries/action";
+import React, { useEffect } from "react";
 
 const AboutPage = () => {
-  return <div>AboutPage</div>;
+  return <div className="container min-h-dvh">AboutPage</div>;
 };
 
 export default AboutPage;

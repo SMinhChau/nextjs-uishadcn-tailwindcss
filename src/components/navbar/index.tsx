@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import "./navbar.css";
 import { usePathname, useRouter } from "next/navigation";
 import { Input } from "../ui/input";
@@ -14,23 +14,20 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { PropsContent } from "@/utils";
-import { Logout } from "@/firebase/auth";
-import { useAuth } from "@/context";
 import useFirebaseAuth from "@/hook/useFirebaseAuth";
+import { Locale } from "../../../i18n-config";
+import { useAppSelector } from "@/redux/hook";
+import { RootState } from "@/redux/store";
 
 export interface Props {
-  dictionary?: {
-    search: string;
-    decrement: string;
-    to_profile: string;
-    logout: string;
-  };
+  lang: Locale;
 }
 
-const Navbar: React.FC<PropsContent> = ({ dictionary }) => {
+const Navbar: React.FC<PropsContent> = ({ lang }) => {
   const pathName = usePathname();
   const router = useRouter();
   const { LogoutAccount } = useFirebaseAuth();
+  const { dictionary } = useAppSelector((state: RootState) => state.languages);
 
   const redirectedPathName = (locale: string) => {
     if (!pathName) return "/";
@@ -64,6 +61,7 @@ const Navbar: React.FC<PropsContent> = ({ dictionary }) => {
   const optionMenu = useMemo(() => {
     return <div></div>;
   }, []);
+
   return (
     <nav className="container content-nav flex row-auto justify-between center">
       <div>Logo </div>
@@ -84,7 +82,7 @@ const Navbar: React.FC<PropsContent> = ({ dictionary }) => {
             );
           })}
         </ul> */}
-        <SelectOption />
+        {lang && <SelectOption lang={lang} />}
 
         <DropdownMenu>
           <DropdownMenuTrigger className=" focus:border-none  ">

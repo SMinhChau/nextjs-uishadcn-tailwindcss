@@ -9,26 +9,44 @@ const auth = getAuth(firebase_app);
 
 export const signIn = async (email: string, password: string) => {
   let result = null,
-    code = null,
-    message = null;
+    errorCode = null,
+    errorMessage = null;
   try {
-    const res = await signInWithEmailAndPassword(auth, email, password);
-    result = res.user;
-  } catch (error) {}
-
-  return { result, code, message };
+    await signInWithEmailAndPassword(auth, email, password)
+      .then((user) => {
+        if (user) {
+          result = user.user;
+        }
+      })
+      .catch((error) => {
+        errorCode = error.code;
+        errorMessage = error.message;
+      });
+  } catch (error) {
+    console.log("Login Fail!");
+  }
+  return { result, errorCode, errorMessage };
 };
 
 export const signUp = async (email: string, password: string) => {
   let result = null,
-    error = null;
+    errorCode = null,
+    errorMessage = null;
   try {
-    result = await createUserWithEmailAndPassword(auth, email, password);
-  } catch (e) {
-    error = e;
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then((user) => {
+        if (user) {
+          result = user.user;
+        }
+      })
+      .catch((error) => {
+        errorCode = error.code;
+        errorMessage = error.message;
+      });
+  } catch (error) {
+    console.log("Register Fail!");
   }
-
-  return { result, error };
+  return { result, errorCode, errorMessage };
 };
 
 export const Logout = () => {
