@@ -73,6 +73,10 @@ export const LanguagesDefault = {
     des_user: "",
     error_login: "",
     success_login: "",
+    sign_up: "",
+    register: "",
+    sign_in: "",
+    success_register: "",
   },
   error: {
     username: "",

@@ -1,18 +1,19 @@
 "use client";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { Locale, i18n } from "../../../../i18n-config";
 import { getLanguages } from "@/dictionaries/action";
 import { useAppDispatch } from "@/redux/hook";
 import { setLanguage } from "@/redux/slice/languages/languagesReducer";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   lang: Locale;
@@ -47,18 +48,23 @@ const SelectOption: React.FC<Props> = ({ lang }) => {
   };
 
   return (
-    <Select onValueChange={(value) => redirectedPathName(value)}>
-      <SelectTrigger className="w-[90px]">
-        <SelectValue placeholder={lang} />
-      </SelectTrigger>
-      <SelectContent>
-        {i18n.locales.map((locale, index) => (
-          <SelectItem key={index} value={locale} textValue={locale}>
-            {locale}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">{lang}</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuRadioGroup
+          value={lang}
+          onValueChange={(value) => redirectedPathName(value)}
+        >
+          {i18n.locales.map((locale, index) => (
+            <DropdownMenuRadioItem key={index} value={locale}>
+              {locale}
+            </DropdownMenuRadioItem>
+          ))}
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

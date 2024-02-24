@@ -8,7 +8,7 @@ interface Props {
 }
 
 const page: React.FC<Props> = async ({ params: { lang } }) => {
-  return <Login />;
+  return <Login lang={lang} />;
 };
 
 export default page;

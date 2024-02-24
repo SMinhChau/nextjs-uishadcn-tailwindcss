@@ -1,5 +1,6 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import React from "react";
+import AuthLayout from "../layout";
 import {
   Form,
   FormControl,
@@ -9,19 +10,22 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { useRouter } from "next/navigation";
-import useFirebaseAuth from "@/hook/useFirebaseAuth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import z from "zod";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { useAppSelector } from "@/redux/hook";
 import { RootState } from "@/redux/store";
-import { toast } from "@/components/ui/use-toast";
-import { Input } from "@/components/ui/input";
-import AuthLayout from "../layout";
-import Link from "next/link";
 import { Locale } from "../../../../i18n-config";
+import useFirebaseAuth from "@/hook/useFirebaseAuth";
+import { toast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+
+interface Props {
+  lang: Locale;
+}
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -30,16 +34,11 @@ const FormSchema = z.object({
   password: z.string().min(2).max(50),
 });
 
-interface Props {
-  lang: Locale;
-}
-
-const Login: React.FC<Props> = ({ lang }) => {
+const SignUp: React.FC<Props> = ({ lang }) => {
   const router = useRouter();
-
-  const { authState, loading, signInWithEmailAndPassword } = useFirebaseAuth();
-
   const { dictionary } = useAppSelector((state: RootState) => state.languages);
+  const { authState, loading, createUserWithEmailAndPassword } =
+    useFirebaseAuth();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -49,24 +48,18 @@ const Login: React.FC<Props> = ({ lang }) => {
     },
   });
 
-  useEffect(() => {
-    if (authState?.email && !loading) {
-      router.push("about");
-    }
-  }, [authState?.email, loading]);
-
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     const { username, password } = values;
-    const { result, errorMessage } = await signInWithEmailAndPassword(
+    const { result, errorMessage } = await createUserWithEmailAndPassword(
       username,
       password
     );
     if (result) {
       toast({
         title: dictionary?.success?.notification,
-        description: dictionary?.login?.success_login,
+        description: dictionary?.login?.success_register,
       });
-      router.push("about");
+      router.push("login");
     }
     if (errorMessage) {
       toast({
@@ -75,9 +68,8 @@ const Login: React.FC<Props> = ({ lang }) => {
       });
     }
   };
-
   return (
-    <AuthLayout title={dictionary?.login?.login}>
+    <AuthLayout title={dictionary?.login?.register}>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -112,14 +104,12 @@ const Login: React.FC<Props> = ({ lang }) => {
             )}
           />
           <Button className="flex justify-center w-full my-2.5" type="submit">
-            {dictionary?.login?.login}
+            {dictionary?.login?.register}
           </Button>
           <h2 className="container w-full flex justify-center">
-            <div className="pr-2">{dictionary.login.sign_up}</div>
+            <div className="pr-2">{dictionary?.login.sign_in}</div>
             {lang && (
-              <Link href={lang && `/${lang}/sign-up`}>
-                {dictionary?.login?.register}
-              </Link>
+              <Link href={`/${lang}/login`}>{dictionary.login.login}</Link>
             )}
           </h2>
         </form>
@@ -128,4 +118,4 @@ const Login: React.FC<Props> = ({ lang }) => {
   );
 };
 
-export default Login;
+export default SignUp;
