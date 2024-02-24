@@ -7,7 +7,6 @@
     "decrement": "Decrement"
   },
   "search": "Search",
-
   "login": {
     "login": "Login",
     "username": "User Name",
@@ -17,6 +16,8 @@
     "error_login": "Login error! Try now!",
     "success_login": "Login success!"
   },
+  "to_profile": "Personal information",
+  "logout": "Logout",
   "error": {
     "username": "Username must be at least 2 characters.",
     "notification": "Fail!"

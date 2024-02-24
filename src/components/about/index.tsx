@@ -1,11 +1,9 @@
 "use client";
-import { AuthContext } from "@/context";
-import React, { useContext } from "react";
+import { getLanguages } from "@/dictionaries/action";
+import React, { useEffect } from "react";
 
 const AboutPage = () => {
-  const user = useContext(AuthContext);
-
-  return <div>AboutPage</div>;
+  return <div className="container min-h-dvh">AboutPage</div>;
 };
 
 export default AboutPage;

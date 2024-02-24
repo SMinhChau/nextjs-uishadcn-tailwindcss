@@ -1,42 +1,44 @@
 "use client";
-
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import React, { createContext, useContext, useEffect, useState } from "react";
-import firebase_app from "../../../configFireBase";
-import { User } from "@/entity/user";
-
-const auth = getAuth(firebase_app);
+import React, { createContext, useContext, useEffect } from "react";
+import useFirebaseAuth from "@/hook/useFirebaseAuth";
+import { useRouter } from "next/navigation";
+import { getLanguages } from "@/dictionaries/action";
+import { useAppDispatch } from "@/redux/hook";
+import { setLanguage } from "@/redux/slice/languages/languagesReducer";
 
 type Props = {
   children: React.ReactNode;
 };
 
-export const AuthContext = createContext({});
+const authContext = createContext({
+  authState: {} || null,
+  loading: false,
+});
 
 const AuthProvider: React.FC<Props> = ({ children }) => {
-  const useAuthContext = useContext(AuthContext);
-
-  const [userCurrent, setUserCurrent] = useState<User | null>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const auth = useFirebaseAuth();
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUserCurrent((user) => user);
-      } else {
-        setUserCurrent(null);
-      }
-      setLoading(false);
-    });
+    if (!auth.authState?.email) {
+      router.push("login");
+    }
+  }, [!auth.authState?.email]);
 
-    return () => unsubscribe();
-  }, []);
+  // useEffect(() => {
+  //   const languages = () => {
+  //     getLanguages("vn").then((result) => {
+  //       if (result) {
+  //         dispatch(setLanguage(result));
+  //       }
+  //     });
+  //   };
+  //   languages();
+  // }, []);
 
-  return (
-    <AuthContext.Provider value={{ userCurrent }}>
-      {loading ? <div>Loading....</div> : children}
-    </AuthContext.Provider>
-  );
+  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 };
 
+export const useAuth = () => useContext(authContext);
 export default AuthProvider;

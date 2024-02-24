@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { Roboto_Serif as FontSans } from "next/font/google";
 import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
-
-import { i18n } from "../../../i18n-config";
-
+import { Locale, i18n } from "../../../i18n-config";
 import { Navbar, ThemeProvider } from "@/components";
 import { Toaster } from "@/components/ui/toaster";
 import AuthProvider from "@/context/auth";
+import { getDictionary } from "../../../get-dictionary";
+import StoreProvider from "./StoreProvider";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -28,28 +28,34 @@ const RootLayout = async ({
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: { lang: Locale };
 }) => {
+  const dictionary = await getDictionary(params.lang);
   return (
-    <html lang={params.lang} suppressHydrationWarning>
-      <body
-        className={cn("bg-background font-sans antialiased", fontSans.variable)}
-      >
-        <AuthProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Navbar />
+    <StoreProvider>
+      <html lang={params.lang} suppressHydrationWarning>
+        <body
+          className={cn(
+            "bg-background font-sans antialiased",
+            fontSans.variable
+          )}
+        >
+          <AuthProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Navbar lang={params.lang} />
 
-            {children}
-            <Toaster />
-          </ThemeProvider>
-        </AuthProvider>
-      </body>
-    </html>
+              {children}
+              <Toaster />
+            </ThemeProvider>
+          </AuthProvider>
+        </body>
+      </html>
+    </StoreProvider>
   );
 };
 
