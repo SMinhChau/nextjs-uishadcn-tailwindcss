@@ -10,4 +10,7 @@
   .title {
     @apply text-3xl;
   }
+  .input-text {
+    @apply text-black  dark:text-white;
+  }
 }

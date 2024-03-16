@@ -18,6 +18,7 @@ import useFirebaseAuth from "@/hook/useFirebaseAuth";
 import { Locale } from "../../../i18n-config";
 import { useAppSelector } from "@/redux/hook";
 import { RootState } from "@/redux/store";
+import { ModeToggle } from "../theme/theme-action";
 
 export interface Props {
   lang: Locale;
@@ -69,6 +70,7 @@ const Navbar: React.FC<PropsContent> = ({ lang }) => {
       </div>
       <div className="flex row-auto items-center space-x-2">
         {lang && <SelectOption lang={lang} />}
+        <ModeToggle />
         {authState?.email ? (
           <DropdownMenu>
             <DropdownMenuTrigger className=" focus:border-none  ">

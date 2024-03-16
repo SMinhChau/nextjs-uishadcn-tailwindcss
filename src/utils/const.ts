@@ -89,3 +89,5 @@ export const LanguagesDefault = {
   to_profile: "",
   logout: "",
 };
+
+export type ThemeStyles = "light" | "dark" | "system";

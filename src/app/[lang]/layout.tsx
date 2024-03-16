@@ -7,6 +7,7 @@ import { Navbar, ThemeProvider } from "@/components";
 import { Toaster } from "@/components/ui/toaster";
 import AuthProvider from "@/context/auth";
 import StoreProvider from "./StoreProvider";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 
 export const fontSans = FontSans({
   subsets: ["latin"],

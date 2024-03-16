@@ -50,7 +50,9 @@ const SelectOption: React.FC<Props> = ({ lang }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">{lang}</Button>
+        <Button variant="outline" className="text-black dark:text-white">
+          {lang}
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuRadioGroup

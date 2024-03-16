@@ -82,7 +82,11 @@ const SignUp: React.FC<Props> = ({ lang }) => {
               <FormItem className="w-full">
                 <FormLabel>{dictionary?.login?.username}</FormLabel>
                 <FormControl>
-                  <Input placeholder="shadcn" {...field} />
+                  <Input
+                    placeholder="shadcn"
+                    {...field}
+                    className="input-text"
+                  />
                 </FormControl>
                 <FormDescription>{dictionary?.login?.des_user}</FormDescription>
                 <FormMessage />
@@ -96,7 +100,12 @@ const SignUp: React.FC<Props> = ({ lang }) => {
               <FormItem>
                 <FormLabel>{dictionary?.login?.password}</FormLabel>
                 <FormControl>
-                  <Input placeholder="password" {...field} type="password" />
+                  <Input
+                    placeholder="password"
+                    {...field}
+                    type="password"
+                    className="input-text"
+                  />
                 </FormControl>
                 <FormDescription>{dictionary?.login?.des_pass}</FormDescription>
                 <FormMessage />

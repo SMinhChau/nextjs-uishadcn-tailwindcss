@@ -99,5 +99,5 @@ body {
 }
 
 .container-full {
-  @apply p-0 m-0;
+  @apply p-0 m-0 bg-white dark:bg-slate-800;
 }

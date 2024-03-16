@@ -90,7 +90,11 @@ const Login: React.FC<Props> = ({ lang }) => {
               <FormItem className="w-full">
                 <FormLabel>{dictionary?.login?.username}</FormLabel>
                 <FormControl>
-                  <Input placeholder="shadcn" {...field} />
+                  <Input
+                    placeholder="shadcn"
+                    {...field}
+                    className="input-text"
+                  />
                 </FormControl>
                 <FormDescription>{dictionary?.login?.des_user}</FormDescription>
                 <FormMessage />
@@ -104,14 +108,22 @@ const Login: React.FC<Props> = ({ lang }) => {
               <FormItem>
                 <FormLabel>{dictionary?.login?.password}</FormLabel>
                 <FormControl>
-                  <Input placeholder="password" {...field} type="password" />
+                  <Input
+                    placeholder="password"
+                    {...field}
+                    type="password"
+                    className="input-text"
+                  />
                 </FormControl>
                 <FormDescription>{dictionary?.login?.des_pass}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button className="flex justify-center w-full my-2.5" type="submit">
+          <Button
+            className="button-conform flex justify-center w-full my-2.5 "
+            type="submit"
+          >
             {dictionary?.login?.login}
           </Button>
           <h2 className="container w-full flex justify-center">
